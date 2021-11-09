@@ -17,6 +17,12 @@ class ViewController: UIViewController {
         }
     }
     
+    var nextPage = ""
+    var previousPage = ""
+    var numberOfPages = 0
+    var page = 1
+    
+    @IBOutlet weak var pageNumberLabel: UILabel!
     @IBOutlet weak var characterTableView: UITableView!
     
     override func viewDidLoad() {
@@ -26,9 +32,35 @@ class ViewController: UIViewController {
         characterTableView.dataSource = self
         characterTableView.delegate = self
         
-        WebLoader().loadCharacter { characters in
+        loadCharacters()
+        
+        pageNumberLabel.text = "\(page)"
+    }
+    
+    func loadCharacters(url: String = "https://rickandmortyapi.com/api/character") {
+        WebLoader().loadCharacter(delegate: self, url: url) { characters in
             self.characters = characters
             self.dismissHUD()
+        }
+    }
+    
+    @IBAction func showPreviousPage(_ sender: Any) {
+        if previousPage != "" {
+            showHUD()
+            
+            page -= 1
+            self.pageNumberLabel.text = "\(page)"
+            loadCharacters(url: previousPage)
+        }
+    }
+    
+    @IBAction func showNextPage(_ sender: Any) {
+        if nextPage != "" {
+            showHUD()
+            
+            page += 1
+            self.pageNumberLabel.text = "\(page)"
+            loadCharacters(url: nextPage)
         }
     }
 }
@@ -84,6 +116,27 @@ extension ViewController: UITableViewDelegate {
         }
         
         self.present(controller, animated: true, completion: nil)
+    }
+}
+
+//MARK: - Делегирование передачи информации от WebLoader
+extension ViewController: WebLoaderPagesDelegate {
+    func tellNextAndPreviousPages(previousPage: String?, nextPage: String?, numberOfPages: Int?) {
+        //MARK: - Без обнуления переменных pageNumberLabel уходит за границы количества страниц
+        self.previousPage = ""
+        self.nextPage = ""
+        
+        if let prev = previousPage {
+            self.previousPage = prev
+        }
+
+        if let next = nextPage {
+            self.nextPage = next
+        }
+        
+        if let pages = numberOfPages {
+            self.numberOfPages = pages
+        }
     }
 }
 

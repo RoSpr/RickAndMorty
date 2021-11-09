@@ -12,18 +12,18 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Skillbox_1_12" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RickAndMortyAPI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KHg-0S-2k5">
-                                <rect key="frame" x="0.0" y="69" width="414" height="793"/>
+                                <rect key="frame" x="0.0" y="69" width="414" height="748"/>
                                 <color key="backgroundColor" red="0.25177882509999999" green="0.26783412550000002" blue="0.32295674029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.25177882509999999" green="0.26783412550000002" blue="0.32295674029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.25177882509999999" green="0.26783412550000002" blue="0.32295674029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharacterTableViewCell" rowHeight="150" id="BnD-LX-B4x" customClass="CharacterTableViewCell" customModule="Skillbox_1_12" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CharacterTableViewCell" rowHeight="150" id="BnD-LX-B4x" customClass="CharacterTableViewCell" customModule="RickAndMortyAPI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BnD-LX-B4x" id="cY1-je-kov">
@@ -139,21 +139,65 @@
                                     <constraint firstItem="oIR-Eu-oBX" firstAttribute="centerX" secondItem="MK4-ny-aJv" secondAttribute="centerX" id="t11-ZT-EiB"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfo-kE-6EZ">
+                                <rect key="frame" x="0.0" y="817" width="414" height="45"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Gzp-Sv-PSf">
+                                        <rect key="frame" x="25" y="7" width="364" height="31"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nhp-pv-m9G">
+                                                <rect key="frame" x="0.0" y="0.0" width="133" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" title="Предыдущая"/>
+                                                <connections>
+                                                    <action selector="showPreviousPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xCt-0J-qto"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4w-AC-ZUv">
+                                                <rect key="frame" x="158" y="5.5" width="49" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBl-yh-dvt">
+                                                <rect key="frame" x="232" y="0.0" width="132" height="31"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="tinted" title="Следующая"/>
+                                                <connections>
+                                                    <action selector="showNextPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Eos-gd-ghg"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.25145483019999998" green="0.2665066123" blue="0.32046180959999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="0BJ-aG-e2i"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gzp-Sv-PSf" secondAttribute="trailing" constant="25" id="5xf-w1-qaj"/>
+                                    <constraint firstItem="Gzp-Sv-PSf" firstAttribute="centerY" secondItem="rfo-kE-6EZ" secondAttribute="centerY" id="QPk-3a-l88"/>
+                                    <constraint firstItem="Gzp-Sv-PSf" firstAttribute="leading" secondItem="rfo-kE-6EZ" secondAttribute="leading" constant="25" id="eDG-MF-ee7"/>
+                                    <constraint firstItem="Gzp-Sv-PSf" firstAttribute="centerX" secondItem="rfo-kE-6EZ" secondAttribute="centerX" id="xpL-aX-Znc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.25177882509999999" green="0.26783412550000002" blue="0.32295674029999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KHg-0S-2k5" secondAttribute="trailing" id="6Tx-Im-9ui"/>
                             <constraint firstItem="KHg-0S-2k5" firstAttribute="top" secondItem="MK4-ny-aJv" secondAttribute="bottom" id="DBI-EN-Mz5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rfo-kE-6EZ" secondAttribute="trailing" id="DJX-ea-UW0"/>
                             <constraint firstItem="MK4-ny-aJv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="H0x-Yo-q9R"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="rfo-kE-6EZ" secondAttribute="bottom" id="JXW-BI-bPv"/>
                             <constraint firstItem="KHg-0S-2k5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RUc-u6-VY0"/>
                             <constraint firstItem="MK4-ny-aJv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="a6w-yC-A1Z"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KHg-0S-2k5" secondAttribute="bottom" id="hv1-sg-qap"/>
+                            <constraint firstItem="rfo-kE-6EZ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="g0X-2f-ezK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MK4-ny-aJv" secondAttribute="trailing" id="wMS-YJ-Ghy"/>
+                            <constraint firstItem="rfo-kE-6EZ" firstAttribute="top" secondItem="KHg-0S-2k5" secondAttribute="bottom" id="xTv-T5-dTA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="characterTableView" destination="KHg-0S-2k5" id="ukZ-C8-qQx"/>
+                        <outlet property="pageNumberLabel" destination="f4w-AC-ZUv" id="6Ss-eu-Bdm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -163,7 +207,7 @@
         <!--Character View Controller-->
         <scene sceneID="4yH-sl-Xet">
             <objects>
-                <viewController storyboardIdentifier="CharacterViewController" id="d8X-Vc-VC6" customClass="CharacterViewController" customModule="Skillbox_1_12" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterViewController" id="d8X-Vc-VC6" customClass="CharacterViewController" customModule="RickAndMortyAPI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YiC-7S-Fjh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -261,7 +305,7 @@
                                         <rect key="frame" x="0.0" y="15" width="329" height="185.5"/>
                                         <color key="backgroundColor" red="0.2869109977" green="0.29388999329999999" blue="0.3831960505" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EpisodesTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EpisodesTableViewCell" rowHeight="55" id="3ny-Yo-ETf" customClass="EpisodesTableViewCell" customModule="Skillbox_1_12" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="EpisodesTableViewCell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EpisodesTableViewCell" rowHeight="55" id="3ny-Yo-ETf" customClass="EpisodesTableViewCell" customModule="RickAndMortyAPI" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="44.5" width="329" height="55"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3ny-Yo-ETf" id="NWs-Dc-nuF">

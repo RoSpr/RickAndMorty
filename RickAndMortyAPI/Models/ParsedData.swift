@@ -8,11 +8,13 @@
 import Foundation
 
 class ParsedData {
+    let info: NSDictionary
     let results: [NSDictionary]
     
     init?(json: NSDictionary) {
         guard let info = json["info"] as? NSDictionary,
               let results = json["results"] as? [NSDictionary] else {return nil}
+        self.info = info
         self.results = results
     }
 }

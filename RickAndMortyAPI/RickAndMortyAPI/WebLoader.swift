@@ -8,13 +8,27 @@
 import Foundation
 import Alamofire
 
+protocol WebLoaderPagesDelegate: AnyObject {
+    func tellNextAndPreviousPages(previousPage: String?, nextPage: String?, numberOfPages: Int?)
+}
+
 class WebLoader {
-//MARK: - Функция загрузки основной информации о пресонажах
-    func loadCharacter(completion: @escaping ([CharacterModel]) -> Void) {
-        AF.request("https://rickandmortyapi.com/api/character").responseJSON { response in
+    weak var delegate: WebLoaderPagesDelegate?
+    
+//MARK: - Функция загрузки основной информации о персонажах
+    func loadCharacter(delegate: ViewController, url: String, completion: @escaping ([CharacterModel]) -> Void) {
+        self.delegate = delegate
+        
+        AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let value):
                 if let parsedData = ParsedData(json: value as! NSDictionary) {
+                    //MARK: - Передача ссылок на предыдущую и следующую страницы
+                    self.delegate?.tellNextAndPreviousPages(
+                        previousPage: parsedData.info["prev"] as? String,
+                        nextPage: parsedData.info["next"] as? String,
+                        numberOfPages: parsedData.info["pages"] as? Int)
+                    
                     DispatchQueue.main.async {
                         var characters: [CharacterModel] = []
                         for model in parsedData.results {
@@ -30,7 +44,7 @@ class WebLoader {
                     return
                 }
             case .failure(let error):
-                print("Error: \(error)")
+                print("Error in WebLoader.loadCharacter: \n\(error)")
             }
         }
     }
@@ -48,9 +62,11 @@ class WebLoader {
                         }
                         completion(episodes)
                     }
-                default: return
+                case .failure(let error):
+                    print("Error in WebLoader.loadEpisodes: \n\(error)")
                 }
             }
         }
     }
 }
+
